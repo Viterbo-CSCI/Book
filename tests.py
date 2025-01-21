@@ -23,7 +23,7 @@ class TestLibrary(unittest.TestCase):
         Use self.assertIn to check if the book was added successfully.
         """
         # Example:
-        # book3 = Book("9780451524935", "1984", "George Orwell", 1949)
+        book3 = Book("9780451524935", "1984", "George Orwell", 1949)
         # Add the book to the library
         # self.library.add_book(book3)
         # Assert that the book is now in the library
@@ -40,6 +40,9 @@ class TestLibrary(unittest.TestCase):
 
     # TODO 3: Test removing a book
     def test_remove_book(self):
+        self.library.remove_book("9780747532699")
+        self.assertNotIn(self.book1, self.library)
+        
         """
         Write a test to remove an existing book from the library.
         Use self.assertNotIn to ensure the book is removed.

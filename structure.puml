@@ -1,0 +1,47 @@
+@startuml
+!define BOOK_LIBRARY
+
+' right click on the code to view the class diagram
+' CTRL + P (Windows/Linux)
+' CMD + P (Mac)
+
+' Book class ctrl D to view
+class Book {
+    - isbn: str
+    - title: str
+    - author: str
+    - year: int
+    + __init__(isbn: str, title: str, author: str, year: int)
+    + __str__(): str
+    + __eq__(other: Book): bool
+    + __hash__(): int
+}
+
+' Library class
+class Library {
+    - _books: dict[str, Book]
+    + __init__()
+    + add_book(book: Book): void
+    + remove_book(isbn: str): void
+    + __iter__(): iterator
+    + __len__(): int
+    + __contains__(book: Book): bool
+    + search_books(keyword: str): list[Book]
+}
+
+' Unit Test class
+class TestLibrary {
+    + setUp()
+    + test_add_book()
+    + test_add_duplicate_book()
+    + test_remove_book()
+    + test_remove_nonexistent_book()
+    + test_length()
+    + test_iteration()
+    + test_search_books()
+}
+
+' Relationships
+Library "1" -- "*" Book : contains >
+TestLibrary --> Library : tests
+@enduml
